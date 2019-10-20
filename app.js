@@ -11,12 +11,18 @@ const express = require('express')  // require Express framework
 const app = express()  // create an Express web app
 const server = http.createServer(app)  // pass in the Express app to our http server
 const path = require('path')
+const bodyParser = require('body-parser')
 
 const hostname = '192.168.0.7'    // allows access from remote computers
 const port = 3005;
 
+app.use(bodyParser.urlencoded({ extended: true }))
+
+
+// specify various resources and apply them to our application
+app.use(bodyParser.json())
 // initialize data ............................................
-require('./utils/seeder.js')(app)  // load seed data
+//require('./utils/seeder.js')(app)  // load seed data
 
 // By default, Express does not serve static files. 
 // Configure middleware with app.use
@@ -26,8 +32,9 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 const routing = require('./routes/router.js')
 app.use('/', routing)  // load routing
 
-server.listen(port, hostname, () => {
+require('./config/database.js')
+server.listen(port, () => {
   // Tell the user where to find the app (use backtics with variables)
-  console.log(`App running at http://${hostname}:${port}/`)
+  console.log(`App running at http://localhost:${port}/`)
   console.log('Press CTRL-C to stop\n')
 })

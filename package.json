@@ -4,6 +4,7 @@
   "description": "Express web app using MVC (no views yet)",
   "main": "app.js",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "latest",
     "lodash": "latest",
     "lodash.find": "latest",
