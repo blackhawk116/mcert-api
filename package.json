@@ -28,8 +28,12 @@
     "app",
     "jQuery",
     "seed",
-    "data"
+    "data",
+    "heroku"
   ],
-  "author": "Denise Case",
-  "license": "MIT"
+  "author": "Gunashekar Koppula",
+  "license": "MIT",
+  "engines":{
+    "node":"10.1"
+  }
 }

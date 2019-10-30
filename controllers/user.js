@@ -20,7 +20,7 @@ api.get('/findall',async (req, res) => {
   const data = await Model.find({})
   res.send(JSON.stringify(data))
 })
-
+//test
 api.post('/adduser',async(req,res)=>{
 
     console.log(req.body)

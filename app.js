@@ -13,8 +13,10 @@ const server = http.createServer(app)  // pass in the Express app to our http se
 const path = require('path')
 const bodyParser = require('body-parser')
 
-const hostname = '192.168.0.7'    // allows access from remote computers
-const port = 3005;
+    // allows access from remote computers
+//const port = 3005;
+const PORT = process.env.PORT || 5000
+
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -27,14 +29,15 @@ app.use(bodyParser.json())
 // By default, Express does not serve static files. 
 // Configure middleware with app.use
 // use '/public to access files in the 'public' folder
+
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 const routing = require('./routes/router.js')
 app.use('/', routing)  // load routing
 
 require('./config/database.js')
-server.listen(port, () => {
+server.listen(PORT, () => {
   // Tell the user where to find the app (use backtics with variables)
-  console.log(`App running at http://localhost:${port}/`)
+  console.log(`App running at http://localhost:${PORT}/`)
   console.log('Press CTRL-C to stop\n')
 })
